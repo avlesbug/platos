@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 // AuthProvider.tsx
 import React, {
@@ -53,12 +52,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         console.log("Reading data");
         const newData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          name: doc.data().name,
-          portions: doc.data().portions,
-          ingredients: doc.data().ingredient,
-          instructions: doc.data().instructions,
-          image: doc.data().image,
+          name: doc.data().name as string,
+          portions: doc.data().portions as number,
+          ingredients: doc.data().ingredient as string[],
+          instructions: doc.data().instructions as string[],
+          image: doc.data().image as string,
         }));
         setRecipes(newData);
       });
