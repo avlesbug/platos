@@ -1,3 +1,566 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --pallette-main: #0c191f;
+    --pallette-main-dark: #022d46;
+    --pallette-main-light: #358f60;
+    --pallette-secondary: #ed8b59;
+    --pallette-cream: #f4e8d7;
+    --pallette-container: #e9edc9;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  background-image: url(../images/pexels-ella-olsson-572949-1640773.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Ensures the body takes the full viewport height */
+  margin: 0; /* Removes default margin */
+}
+
+.app-header {
+  display: grid;
+  grid-template-columns: 10% 80% 10%; /* Three columns of equal width */
+  grid-template-areas: "logoArea buttonRow accountLink";
+  grid-template-rows: 100%;
+  align-items: center; /* Vertically center items */
+  width: 100%;
+  background-color: var(--pallette-main);
+  height: 3.5em;
+}
+
+.header-title {
+  grid-area: "logoArea";
+  font-size: 1.2em;
+  padding-left: 3vw;
+  padding-right: auto;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  font-style: italic;
+  font-weight: 700;
+  font-size: x-large;
+}
+
+.header-buttonrow {
+  grid-area: "buttonRow";
+  height: 100%;
+  width: 100%;
+  display: flex;
+  gap: 3em;
+  font-size: calc(0.8em + 0.4vw);
+  justify-content: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  align-items: center;
+  font-style: italic;
+}
+
+.login-link {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  grid-area: "accountLink";
+  color: #ffffff;
+  padding-right: 3em;
+}
+
+.center-content {
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.login-dialog {
+  height: 50vh;
+  width: 20vw;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2;
+  min-width: 300px;
+}
+
+.login-dialog > h2 {
+  font-size: 1.4em;
+}
+
+.header-title Link {
+  background-color: #ff5733;
+}
+
+.header-title a {
+  text-decoration: none; /* Remove underline */
+  color: white; /* Use the default text color */
+}
+
+.header-buttonrow > a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-buttonrow a:hover,
+.header-buttonrow a.active {
+  text-decoration: underline;
+}
+
+.acount-links {
+  grid-area: "accountLink";
+  height: 100%;
+  display: grid;
+  align-items: center;
+  margin-right: 10vw;
+  margin-left: auto; /* Pushes the logout button to the right */
+}
+
+.app-header button {
+  border: none; /* Remove the border */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2em; /* Increase font size */
+  font-weight: bold; /* Make font bold */
+  cursor: pointer;
+  background: transparent;
+  color: white;
+}
+
+.page-container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+}
+
+.body-container {
+  width: 100vw;
+  height: calc(100vh - 3.5em);
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(250, 250, 250, 0.7);
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  height: 100%;
+  padding: 2em;
+  border-radius: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.recipe-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(260px, 1fr));
+  justify-content: center;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 1.4em;
+  gap: 2em;
+  height: 100%;
+}
+
+.ingredients {
+  grid-area: ingredients;
+}
+
+.instructions {
+  grid-area: instructions;
+}
+
+.image {
+  grid-area: image;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 1em;
+}
+
+.recipe-card-image {
+  position: relative;
+  overflow: hidden;
+  height: 130px;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.recipe-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+}
+
+.ingredients-list {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0.5em 0 0 0; /* Remove default padding */
+}
+
+.ingredients-list li {
+  margin-bottom: 8px; /* Add spacing between each ingredient */
+  font-size: 16px; /* Set font size for ingredients */
+  line-height: 1.5; /* Set line height for better readability */
+  font-size: 1.2rem;
+}
+
+/* Optionally, you can style each ingredient differently */
+.ingredients-list li:before {
+  content: "•"; /* Add custom bullet point */
+  color: #ff5733; /* Change color of bullet point */
+  margin-right: 8px; /* Add space between bullet point and text */
+}
+
+.instructions-list {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0.8em 0 0 0; /* Remove default padding */
+}
+
+.instructions-list li {
+  margin-bottom: 1em; /* Add spacing between each instruction */
+  font-size: 16px; /* Set font size for instructions */
+  line-height: 1.5; /* Set line height for better readability */
+  font-size: 1.2rem;
+  gap: 1em;
+  align-items: center;
+  display: flex;
+}
+
+.checked-instruction {
+  text-decoration: line-through;
+  color: #888; /* Example: Change color for checked items */
+  font-size: 0.2em;
+}
+
+.checked-instruction > li {
+  font-size: 0.2em;
+}
+
+/* Hide default checkbox */
+.instructions-list input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  min-width: 16px;
+  min-height: 16px;
+  border: 2px solid #ff58335a;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.instructions-list input[type="checkbox"]:checked {
+  background-color: #888; /* Grey color when checked */
+  border-color: #888; /* Grey border color when checked */
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexrow {
+  flex-direction: row;
+}
+
+.flexcol {
+  flex-direction: column;
+}
+
+.gap {
+  gap: 2em;
+}
+
+.ingredients-container {
+  text-align: start;
+  background-color: #e9edc9;
+  padding: 1rem;
+  min-width: 20vw;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.instructions-container {
+  height: 100%;
+  text-align: start;
+  padding: 1rem;
+  background-color: #e9edc9;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  overflow-y: auto;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.8em;
+  list-style: none;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em;
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: 1080px) {
+  .content-container {
+    height: 100%;
+    width: 100%;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    padding-bottom: 1.5em;
+    padding-top: 1em;
+  }
+  .recipes-body {
+    min-width: 100vw; /* Adjusted max-width for tablets */
+  }
+  .header-title {
+    margin-left: 5vw; /* Remove left margin on narrow screens */
+  }
+
+  .header-buttonrow,
+  .acount-links {
+    margin-right: 2vw; /* Remove right margin */
+  }
+  .full-text {
+    display: none;
+  }
+
+  .short-text {
+    display: inline-blocxk;
+  }
+  .recipe-body {
+    gap: 0.4em;
+    margin: 0.2em;
+  }
+}
+
+.recipe-item {
+  font-weight: 450;
+  font-size: 1.3em;
+  position: relative;
+  border-radius: 0.8em;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+  transition:
+    transform 0.2s,
+    box-shadow 0.3s; /* Add transition for smooth effect */
+}
+
+.recipe-item:hover {
+  transform: scale(1.08); /* Increase size on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust shadow on hover */
+}
+
+.recipe-link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the parent's color */
+}
+
+.margin {
+  margin: 1.4em;
+}
+
+.container-header {
+  display: flex;
+  justify-content: space-between; /* Align items with space between them */
+  align-items: center; /* Vertically center items */
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 130px;
+  background-image: linear-gradient(
+    to right,
+    rgba(242, 243, 234, 0.9),
+    rgb(204, 213, 174)
+  );
+  backdrop-filter: blur(100px);
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.no-style {
+  border: none; /* Remove border */
+  background: none; /* Remove background */
+  padding: 0.4em; /* Remove padding */
+  margin: 0; /* Remove margin */
+  font: inherit; /* Inherit font styles */
+  color: inherit; /* Inherit text color */
+  cursor: pointer; /* Set cursor to pointer */
+  outline: none; /* Remove outline */
+}
+@media screen and (min-width: 720px) {
+  .full-text {
+    display: inline-block;
+  }
+
+  .short-text {
+    display: none;
+  }
+}
+
+.recipe-grid-layout {
+  display: grid;
+  gap: 0.5em;
+  grid-template-rows: 5% 30% 60%;
+  grid-template-columns: 25vw auto;
+  grid-template-areas:
+    "ingredients heading"
+    "ingredients image"
+    "ingredients instructions";
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 720px) {
+  .recipe-grid-layout {
+    grid-template-rows: 5% 10% auto auto;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "heading"
+      "image"
+      "ingredients"
+      "instructions";
+  }
+  .content-container {
+    overflow-y: scroll;
+  }
+}
+
+.recipe-heading {
+  grid-area: heading;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 1em;
+  font-size: 1.6em;
+  font-weight: 400;
+}
+
+.layoutTest footer {
+  grid-area: footer;
+  background-color: aqua;
+}
+
+.newrecipe-container > h2 {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.newrecipe-container > p {
+  font-size: 1.2em;
+}
+
+.lagre-oppskrift {
+  background-color: #000000; /* A modern, vibrant blue */
+  color: #ffffff; /* White text for contrast */
+  border-radius: 0.4em;
+  width: fit-content;
+  border: none; /* Removes default border */
+  padding: 10px 20px; /* Padding for size and clickable area */
+  font-size: 1em; /* Sets the font size */
+  cursor: pointer; /* Changes the cursor to a pointer when hovering */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
