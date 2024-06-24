@@ -71,8 +71,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-  const signOut = () => {
-    return auth.signOut();
+  const signOut = async () => {
+    await auth.signOut();
+    window.location.reload();
   };
 
   return (

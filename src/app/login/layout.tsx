@@ -11,10 +11,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
 
   useEffect(() => {
+    console.log("Something changed");
     if (user && !loading) {
       redirect("/myrecipes");
     }
-  }, [loading]);
+  }, [loading, user]);
   return (
     <>
       <ModularHeader />

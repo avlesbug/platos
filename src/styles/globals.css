@@ -453,6 +453,12 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust shadow on hover */
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .recipe-item:hover {
+    transform: none;
+  }
+}
+
 .recipe-link {
   text-decoration: none; /* Remove underline */
   color: inherit; /* Use the parent's color */
