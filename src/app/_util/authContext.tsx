@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 // AuthProvider.tsx
 import React, {
@@ -37,21 +38,27 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
       setLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       getRecipes(user);
     });
 
     return () => unsubscribe();
   }, []);
 
-  const getRecipes = async (user: User) => {
+  const getRecipes = async (user: User | null) => {
     if (user) {
       await getDocs(
         collection(firestoreDatabase, `users/${user.uid}/recipes`),
       ).then((querySnapshot) => {
         console.log("Reading data");
         const newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
           id: doc.id,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          name: doc.data().name,
+          portions: doc.data().portions,
+          ingredients: doc.data().ingredient,
+          instructions: doc.data().instructions,
+          image: doc.data().image,
         }));
         setRecipes(newData);
       });
