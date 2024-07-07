@@ -19,5 +19,5 @@ export type RecipeDto = {
   portions: number;
   ingredients: string[];
   instructions: string[];
-  imageUrl: string;
+  image: string;
 };

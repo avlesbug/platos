@@ -3,8 +3,8 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-  NextOrObserver,
-  User,
+  type NextOrObserver,
+  type User,
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";

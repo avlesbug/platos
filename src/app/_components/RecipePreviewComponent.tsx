@@ -3,7 +3,7 @@ import "src/app/newrecipe/newrecipe.css";
 
 import { FileUploader } from "react-drag-drop-files";
 import { Button } from "~/components/ui/button";
-import { RecipeDto } from "../_util/types";
+import { type RecipeDto } from "../_util/types";
 import { IngredientsComponent } from "./IngredientsComponent";
 import { InstructionsComponent } from "./InstructionsComponent";
 
@@ -26,22 +26,17 @@ export const RecipePreviewComponent = ({
   return (
     <>
       <div className="recipe-preview-container">
-        <div className="preview-topbar">
-          {
-            "Forhåndsvisning - Se over at alt stemmer eller gjør endringer før du lagrer!"
-          }
-        </div>
         <div className="recipe-preview-grid-layout">
           <div className="recipe-heading">{recipe.name}</div>
           <div className="ingredients">
             <IngredientsComponent ingredients={recipe.ingredients} />
           </div>
           <div className="image">
-            {recipe.imageUrl !== "No picture" && (
+            {recipe.image !== "No picture" && (
               <div className="recipe-image">
                 <img
                   className="recipe-image"
-                  src={recipe.imageUrl}
+                  src={recipe.image}
                   //   onLoad={handleImageLoad}
                 />
               </div>
@@ -53,7 +48,7 @@ export const RecipePreviewComponent = ({
               alt={recipe.name}
               onLoad={handleImageLoad}
             /> */}
-            {recipe.imageUrl === "No picture" && (
+            {recipe.image === "No picture" && (
               <div className="image-selection-container">
                 <FileUploader
                   handleChange={handleImageUpload}

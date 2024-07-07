@@ -1,7 +1,7 @@
 .recipe-preview-grid-layout {
   display: grid;
   gap: 0.5em;
-  grid-template-rows: 5% 30% 55%;
+  grid-template-rows: 8% 30% 52%;
   grid-template-columns: 25vw auto;
   grid-template-areas:
     "ingredients heading"
@@ -11,10 +11,23 @@
   width: 100%;
 }
 
+.new-recipe-dialog {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.8);
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  padding-top: 1em;
+  gap: 1em;
+  border-radius: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
 .recipe-preview-container {
   display: flex;
   flex-direction: column;
-  height: 80%;
+  height: 90%;
   background-color: rgba(255, 255, 255, 0.8);
   justify-content: center;
   align-items: center;
@@ -53,14 +66,6 @@
       "image"
       "ingredients"
       "instructions";
-  }
-
-  .preview-topbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.4em;
-    font-weight: 400;
   }
 
   .recipe-heading {

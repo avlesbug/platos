@@ -3,7 +3,7 @@
 import { collection, addDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage, firestoreDatabase } from "~/utils/firebase.utils";
-import { RecipeDto, type BaseRecipe } from "../_util/types";
+import { type RecipeDto, type BaseRecipe } from "../_util/types";
 import { type User } from "firebase/auth";
 
 // Function to fetch the recipe from the API

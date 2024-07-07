@@ -6,13 +6,15 @@ import { type Recipe } from "../_util/types";
 import { useAuth } from "../_util/authContext";
 
 export default function MyRecipesPage() {
-  const { recipes } = useAuth();
+  const { recipes, loading } = useAuth();
 
   return (
-    <div className="recipe-grid">
-      {recipes?.map((recipe: Recipe) => (
-        <RecipeCard recipe={recipe} key={recipe.id} />
-      ))}
+    <div className="recipe-grid-container">
+      <div className="recipe-grid">
+        {recipes?.map((recipe: Recipe) => (
+          <RecipeCard recipe={recipe} key={recipe.id} />
+        ))}
+      </div>
     </div>
   );
 }

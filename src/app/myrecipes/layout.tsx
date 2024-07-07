@@ -18,9 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ModularHeader />
-      <div className="body-container">
-        <div className="content-container">{children}</div>
-      </div>
+      <div className="body-container">{children}</div>
     </>
   );
 }

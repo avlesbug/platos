@@ -1,8 +1,8 @@
 // /* eslint-disable @typescript-eslint/no-floating-promises */
 "use client";
 
-import { useEffect, useState } from "react";
-import { RecipeDto, type BaseRecipe } from "../_util/types";
+import { useState } from "react";
+import { type RecipeDto } from "../_util/types";
 import { useAuth } from "../_util/authContext";
 import {
   getImageFromUrl,
@@ -14,7 +14,7 @@ import { LoadingRecipeComponent } from "../_components/LoadingRecipeComponent";
 import { NewRecipeDialogComponent } from "../_components/NewRecipeDialogComponent";
 import { RecipePreviewComponent } from "../_components/RecipePreviewComponent";
 
-export default function NewRecipiePage() {
+export default function NewRecipePage() {
   const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [recipeInput, setRecipeInput] = useState("");
@@ -94,7 +94,7 @@ export default function NewRecipiePage() {
       {imageData && (
         <div className="absolute">
           Vi fant dette bildet
-          <img src={imageUrl} />
+          <img src={imageUrl} alt={"Food image"} />
         </div>
       )}
       {!isLoading && !recipe && (

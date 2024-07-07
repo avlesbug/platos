@@ -2,7 +2,6 @@ import "~/styles/globals.css";
 
 import { useEffect, useState } from "react";
 import { ChevronsUpDown } from "lucide-react";
-import { BaseRecipe } from "../_util/types";
 import { Button } from "~/components/ui/button";
 import useWindowDimensions from "../_util/dimensionUtils";
 
@@ -13,6 +12,7 @@ interface Props {
 export const IngredientsComponent = ({ ingredients }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
   const { width } = useWindowDimensions();
+  console.log(ingredients);
 
   useEffect(() => {
     if (width > 720) {

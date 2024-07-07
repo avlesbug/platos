@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Recipe } from "../_util/types";
+import { type Recipe } from "../_util/types";
 import Link from "next/link";
 
 interface Props {
@@ -14,7 +14,11 @@ export const RecipeCard = ({ recipe }: Props) => {
   };
 
   return (
-    <Link href={recipe.id} key={recipe.id} className="recipe-link">
+    <Link
+      href={`myrecipes/${recipe.id}`}
+      key={recipe.id}
+      className="recipe-link"
+    >
       <div className="recipe-item">
         <div className="recipe-card-image">
           {!imageLoaded && <div className="image-placeholder"></div>}

@@ -1,4 +1,5 @@
 import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 
 interface Props {
   recipeInput: string;
@@ -12,23 +13,21 @@ export const NewRecipeDialogComponent = ({
   onChange,
 }: Props) => {
   return (
-    <>
-      <h2 className="bold text-xl font-bold">Ny oppskrift</h2>
+    <div className="new-recipe-dialog">
+      <h2 className="bold text-xl font-bold italic">Ny oppskrift</h2>
       <p
         style={{ width: "25em", maxWidth: "80vw" }}
         className="text-lg font-bold"
       >
         Skriv inn adressen til oppskriften du ønsker å hente.
       </p>
-      <textarea
-        style={{ resize: "none", maxWidth: "80vw" }}
+      <Input
+        type="link"
+        placeholder="Lim inn lenken her..."
         value={recipeInput}
         onChange={(event) => onChange(event.target.value)}
-        rows={2}
-        cols={50}
-        placeholder="Lim inn lenken her..."
       />
       <Button onClick={onClick}>Hent oppskrift</Button>
-    </>
+    </div>
   );
 };

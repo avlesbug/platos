@@ -22,10 +22,10 @@ export const ModularHeader = ({ showLogginButton }: Props) => {
       <div className="header-title">
         <Link href={"/myrecipes"}>
           <span className="full-text">
-            <h4>ReciPie</h4>
+            <h4>Platos</h4>
           </span>
           <span className="short-text">
-            <h1>R</h1>
+            <h1>P</h1>
           </span>
         </Link>
       </div>
@@ -43,7 +43,7 @@ export const ModularHeader = ({ showLogginButton }: Props) => {
         </div>
       )}
       {user && (
-        <div className="acount-links">
+        <div className="login-link">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <LucideUser className="h-6 w-6 text-white" />
