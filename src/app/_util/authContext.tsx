@@ -9,12 +9,14 @@ import React, {
 } from "react";
 import {
   auth,
+  firebaseStorage,
   firestoreDatabase,
   signInWithGooglePopup,
 } from "~/utils/firebase.utils";
 import { type User } from "firebase/auth";
 import { type Recipe } from "./types";
 import { collection, getDocs } from "firebase/firestore";
+import { ref, uploadBytes } from "firebase/storage";
 
 interface AuthContextType {
   user: User | null;

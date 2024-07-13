@@ -36,7 +36,7 @@ export const getImageFromUrl = async (
 
 // Function to upload an image and get the download URL
 export const uploadImage = async (
-  file: File,
+  file: Blob,
   userId: string,
 ): Promise<string> => {
   const imageId = crypto.randomUUID();
@@ -48,12 +48,34 @@ export const uploadImage = async (
   return url;
 };
 
+export const fetchImage = async (
+  userId: string,
+  imageUrl: string | undefined,
+): Promise<string> => {
+  if (imageUrl === undefined) return "NoImage";
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_RECIPIE_API_URL}/api/download-image?imageUrl=${imageUrl}`,
+    );
+    if (!response.ok) {
+      throw new Error("Failed to download image");
+    }
+
+    const imageBlob = await response.blob();
+    return uploadImage(imageBlob, userId);
+  } catch (error) {
+    console.error("Error fetching image:", error);
+  }
+  return "NoImage";
+};
+
 // Function to submit the recipe to Firestore
 export const submitRecipe = async (
   user: User,
   recipeJson: BaseRecipe,
   imageUrl: string,
 ): Promise<void> => {
+  console.log("Submitting recipe");
   await addDoc(collection(firestoreDatabase, "users", user.uid, "recipes"), {
     ...recipeJson,
     image: imageUrl,

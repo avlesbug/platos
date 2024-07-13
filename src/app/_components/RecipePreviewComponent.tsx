@@ -11,7 +11,7 @@ interface Props {
   recipe: RecipeDto;
   onClick: () => void;
   onChange: (value: undefined) => void;
-  handleImageUpload: (file: File) => void;
+  handleImageUpload: (file: Blob) => void;
 }
 
 export const RecipePreviewComponent = ({
@@ -33,13 +33,8 @@ export const RecipePreviewComponent = ({
           </div>
           <div className="image">
             {recipe.image !== "No picture" && (
-              <div className="recipe-image">
-                <img
-                  className="recipe-image"
-                  src={recipe.image}
-                  //   onLoad={handleImageLoad}
-                />
-              </div>
+              // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+              <img className="recipe-image" src={recipe.image} />
             )}
             {/* {!imageLoaded && <div className="image-placeholder"></div>} */}
             {/* <img
