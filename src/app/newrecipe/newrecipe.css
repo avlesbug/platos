@@ -1,0 +1,98 @@
+.recipe-preview-grid-layout {
+  display: grid;
+  gap: 0.5em;
+  grid-template-rows: 8% 30% 52%;
+  grid-template-columns: 25vw auto;
+  grid-template-areas:
+    "ingredients heading"
+    "ingredients image"
+    "ingredients instructions";
+  height: 100%;
+  width: 100%;
+}
+
+.new-recipe-dialog {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.8);
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  padding-top: 1em;
+  gap: 1em;
+  border-radius: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.recipe-preview-container {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  background-color: rgba(255, 255, 255, 0.8);
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  padding-bottom: 0.5em;
+  gap: 1em;
+  border-radius: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.677); /* Add shadow */
+}
+
+.recipe-preview-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80vw;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.preview-topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 720px) {
+  .recipe-preview-grid-layout {
+    overflow-y: scroll;
+    grid-template-rows: auto 5% 10% auto auto;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "topbar"
+      "heading"
+      "image"
+      "ingredients"
+      "instructions";
+  }
+
+  .recipe-heading {
+    display: flex;
+    align-items: center;
+    font-size: 1.4em;
+    font-weight: 400;
+  }
+}
+
+.preview-buttonrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.image-selection-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(242, 243, 234, 0.9),
+    #e9edc9,
+    rgba(242, 243, 234, 0.9)
+  );
+}
