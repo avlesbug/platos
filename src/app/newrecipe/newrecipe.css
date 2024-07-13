@@ -1,7 +1,7 @@
 .recipe-preview-grid-layout {
   display: grid;
   gap: 0.5em;
-  grid-template-rows: 8% 30% 52%;
+  grid-template-rows: 8% 30% 58%;
   grid-template-columns: 25vw auto;
   grid-template-areas:
     "ingredients heading"
@@ -58,7 +58,7 @@
 @media screen and (max-width: 720px) {
   .recipe-preview-grid-layout {
     overflow-y: scroll;
-    grid-template-rows: auto 5% 10% auto auto;
+    grid-template-rows: auto auto 10% auto auto;
     grid-template-columns: 100%;
     grid-template-areas:
       "topbar"
@@ -66,6 +66,10 @@
       "image"
       "ingredients"
       "instructions";
+  }
+
+  .recipe-preview-page {
+    width: 98vw;
   }
 
   .recipe-heading {

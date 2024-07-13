@@ -392,8 +392,6 @@ body {
   display: flex;
   flex-direction: column;
   background-color: rgba(250, 250, 250, 0.7);
-  align-items: center;
-  justify-content: center;
   width: 80vw;
   height: 100%;
   padding: 1em;
@@ -541,6 +539,9 @@ body {
   .content-container {
     overflow-y: scroll;
     border-radius: 0;
+  }
+  .recipe-grid-container {
+    width: 100vw;
   }
 }
 

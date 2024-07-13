@@ -1,20 +1,17 @@
 // /* eslint-disable @typescript-eslint/no-floating-promises */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { type RecipeDto } from "../_util/types";
 import { useAuth } from "../_util/authContext";
 import {
   fetchImage,
-  getImageFromUrl,
   getRecipeFromUrl,
   submitRecipe,
-  uploadImage,
 } from "../_util/recipeClientService";
 import { LoadingRecipeComponent } from "../_components/LoadingRecipeComponent";
 import { NewRecipeDialogComponent } from "../_components/NewRecipeDialogComponent";
 import { RecipePreviewComponent } from "../_components/RecipePreviewComponent";
-import assert from "assert";
 
 export default function NewRecipePage() {
   const { user } = useAuth();
@@ -53,6 +50,7 @@ export default function NewRecipePage() {
   };
 
   const handleChange = (file: Blob) => {
+    console.log("On change");
     setImageUpload(file);
   };
 
@@ -62,15 +60,15 @@ export default function NewRecipePage() {
         <NewRecipeDialogComponent
           recipeInput={recipeInput}
           onChange={setRecipeInput}
-          onClick={handleGetRecipe}
+          onGetRecipeClick={handleGetRecipe}
         />
       )}
       {isLoading && <LoadingRecipeComponent />}
       {recipe && !isLoading && (
         <RecipePreviewComponent
           recipe={recipe}
-          onClick={handleSubmit}
-          onChange={setRecipe}
+          onSaveButtonClick={handleSubmit}
+          onBackButtonClick={setRecipe}
           handleImageUpload={handleChange}
         />
       )}

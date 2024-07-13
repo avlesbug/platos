@@ -3,21 +3,23 @@ import "src/app/newrecipe/newrecipe.css";
 
 import { FileUploader } from "react-drag-drop-files";
 import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import { type RecipeDto } from "../_util/types";
 import { IngredientsComponent } from "./IngredientsComponent";
 import { InstructionsComponent } from "./InstructionsComponent";
+import { Label } from "~/components/ui/label";
 
 interface Props {
   recipe: RecipeDto;
-  onClick: () => void;
-  onChange: (value: undefined) => void;
+  onSaveButtonClick: () => void;
+  onBackButtonClick: (value: undefined) => void;
   handleImageUpload: (file: Blob) => void;
 }
 
 export const RecipePreviewComponent = ({
   recipe,
-  onClick,
-  onChange,
+  onSaveButtonClick,
+  onBackButtonClick,
   handleImageUpload,
 }: Props) => {
   const fileTypes = ["JPG", "PNG", "JPEG"];
@@ -32,7 +34,7 @@ export const RecipePreviewComponent = ({
             <IngredientsComponent ingredients={recipe.ingredients} />
           </div>
           <div className="image">
-            {recipe.image !== "No picture" && (
+            {recipe.image !== "NoImage" && (
               // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
               <img className="recipe-image" src={recipe.image} />
             )}
@@ -43,14 +45,18 @@ export const RecipePreviewComponent = ({
               alt={recipe.name}
               onLoad={handleImageLoad}
             /> */}
-            {recipe.image === "No picture" && (
+            {recipe.image === "NoImage" && (
               <div className="image-selection-container">
-                <FileUploader
+                {/* <FileUploader
                   handleChange={handleImageUpload}
                   name="file"
                   types={fileTypes}
                   label={"Last opp eller dra og slipp et bilde her!"}
-                />
+                /> */}
+                <div className="grid w-full max-w-sm items-center gap-1.5">
+                  <Label htmlFor="picture">Picture</Label>
+                  <Input id="picture" type="file" />
+                </div>
               </div>
             )}
           </div>
@@ -60,8 +66,8 @@ export const RecipePreviewComponent = ({
         </div>
       </div>
       <div className="preview-buttonrow">
-        <Button onClick={onClick}>Lagre oppskrift</Button>
-        <Button onClick={() => onChange(undefined)}>Tilbake</Button>
+        <Button onClick={onSaveButtonClick}>Lagre oppskrift</Button>
+        <Button onClick={() => onBackButtonClick(undefined)}>Tilbake</Button>
       </div>
     </>
   );
