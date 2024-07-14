@@ -54,7 +54,10 @@ export const RecipePreviewComponent = ({
                   label={"Last opp eller dra og slipp et bilde her!"}
                 /> */}
                 <div className="grid w-full max-w-sm items-center gap-1.5">
-                  <Label htmlFor="picture">Picture</Label>
+                  <Label htmlFor="picture">
+                    Vi kunne ikke finne bilde for denne oppskriften. Velg et
+                    bilde her.
+                  </Label>
                   <Input id="picture" type="file" />
                 </div>
               </div>

@@ -37,6 +37,7 @@ export default function NewRecipePage() {
     if (user == null) return;
     setIsLoading(true);
     try {
+      console.log(`Trying to get image from ${recipe?.image}`);
       const imageUrl = await fetchImage(user?.uid, recipe?.image);
       await submitRecipe(user, recipe!, imageUrl);
       console.log("Recipe successfully added");

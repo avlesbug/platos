@@ -55,7 +55,16 @@
   font-weight: 500;
 }
 
+@media screen and (max-width: 1080px) {
+  .recipe-preview-page {
+    width: 90vw;
+  }
+}
+
 @media screen and (max-width: 720px) {
+  .recipe-preview-container {
+    padding: 0.5em;
+  }
   .recipe-preview-grid-layout {
     overflow-y: scroll;
     grid-template-rows: auto auto 10% auto auto;
