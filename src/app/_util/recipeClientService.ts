@@ -55,7 +55,14 @@ export const fetchImage = async (
   if (imageUrl === undefined) return "NoImage";
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_RECIPIE_API_URL}/api/download-image?imageUrl=${imageUrl}`,
+      `${process.env.NEXT_PUBLIC_RECIPIE_API_URL}/api/download-image`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: imageUrl,
+      },
     );
     if (!response.ok) {
       throw new Error("Failed to download image");

@@ -3,13 +3,13 @@ import { Input } from "~/components/ui/input";
 
 interface Props {
   recipeInput: string;
-  onClick: () => void;
+  onGetRecipeClick: () => void;
   onChange: (value: string) => void;
 }
 
 export const NewRecipeDialogComponent = ({
   recipeInput,
-  onClick,
+  onGetRecipeClick,
   onChange,
 }: Props) => {
   return (
@@ -27,7 +27,7 @@ export const NewRecipeDialogComponent = ({
         value={recipeInput}
         onChange={(event) => onChange(event.target.value)}
       />
-      <Button onClick={onClick}>Hent oppskrift</Button>
+      <Button onClick={onGetRecipeClick}>Hent oppskrift</Button>
     </div>
   );
 };
