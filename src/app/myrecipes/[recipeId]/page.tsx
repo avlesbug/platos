@@ -17,10 +17,6 @@ export default function RecipePage({ params }: RecipePageProps) {
   const { getRecipeById } = useAuth();
   const recipe = getRecipeById(params.recipeId);
 
-  useEffect(() => {
-    console.log(recipe);
-  }, [recipe]);
-
   return (
     <div className="content-container">
       {recipe ? (

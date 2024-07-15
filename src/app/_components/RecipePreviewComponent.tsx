@@ -1,19 +1,19 @@
-import "~/styles/globals.css";
 import "src/app/newrecipe/newrecipe.css";
+import "~/styles/globals.css";
 
-import { FileUploader } from "react-drag-drop-files";
+import { ChangeEvent } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import { type RecipeDto } from "../_util/types";
 import { IngredientsComponent } from "./IngredientsComponent";
 import { InstructionsComponent } from "./InstructionsComponent";
-import { Label } from "~/components/ui/label";
 
 interface Props {
   recipe: RecipeDto;
   onSaveButtonClick: () => void;
   onBackButtonClick: (value: undefined) => void;
-  handleImageUpload: (file: Blob) => void;
+  handleImageUpload: (file: File) => void;
 }
 
 export const RecipePreviewComponent = ({
@@ -23,7 +23,14 @@ export const RecipePreviewComponent = ({
   handleImageUpload,
 }: Props) => {
   const fileTypes = ["JPG", "PNG", "JPEG"];
-  console.log(recipe);
+  // console.log(recipe);
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] ?? null;
+    if (file) {
+      handleImageUpload(file);
+    }
+  };
 
   return (
     <>
@@ -38,27 +45,19 @@ export const RecipePreviewComponent = ({
               // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
               <img className="recipe-image" src={recipe.image} />
             )}
-            {/* {!imageLoaded && <div className="image-placeholder"></div>} */}
-            {/* <img
-              className="recipe-image"
-              src={recipe.image}
-              alt={recipe.name}
-              onLoad={handleImageLoad}
-            /> */}
             {recipe.image === "NoImage" && (
               <div className="image-selection-container">
-                {/* <FileUploader
-                  handleChange={handleImageUpload}
-                  name="file"
-                  types={fileTypes}
-                  label={"Last opp eller dra og slipp et bilde her!"}
-                /> */}
                 <div className="grid w-full max-w-sm items-center gap-1.5">
                   <Label htmlFor="picture">
                     Vi kunne ikke finne bilde for denne oppskriften. Velg et
                     bilde her.
                   </Label>
-                  <Input id="picture" type="file" />
+                  <Input
+                    id="picture"
+                    type="file"
+                    accept=".jpeg, .jpg, .png"
+                    onChange={handleFileChange}
+                  />
                 </div>
               </div>
             )}

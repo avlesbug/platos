@@ -12,7 +12,6 @@ interface Props {
 export const IngredientsComponent = ({ ingredients }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
   const { width } = useWindowDimensions();
-  console.log(ingredients);
 
   useEffect(() => {
     if (width > 720) {

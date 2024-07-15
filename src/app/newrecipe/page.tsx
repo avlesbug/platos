@@ -8,6 +8,7 @@ import {
   fetchImage,
   getRecipeFromUrl,
   submitRecipe,
+  uploadImage,
 } from "../_util/recipeClientService";
 import { LoadingRecipeComponent } from "../_components/LoadingRecipeComponent";
 import { NewRecipeDialogComponent } from "../_components/NewRecipeDialogComponent";
@@ -37,9 +38,13 @@ export default function NewRecipePage() {
     if (user == null) return;
     setIsLoading(true);
     try {
-      console.log(`Trying to get image from ${recipe?.image}`);
-      const imageUrl = await fetchImage(user?.uid, recipe?.image);
-      await submitRecipe(user, recipe!, imageUrl);
+      let imageUrl;
+      if (imageUpload) {
+        imageUrl = uploadImage(imageUpload, user.uid);
+      } else {
+        imageUrl = await fetchImage(user?.uid, recipe?.image);
+      }
+      await submitRecipe(user, recipe!, await imageUrl);
       console.log("Recipe successfully added");
       setRecipeInput("");
       setRecipe(undefined);
@@ -50,9 +55,8 @@ export default function NewRecipePage() {
     }
   };
 
-  const handleChange = (file: Blob) => {
-    console.log("On change");
-    setImageUpload(file);
+  const handleChange = (file: File) => {
+    setImageUpload(file as Blob);
   };
 
   return (
