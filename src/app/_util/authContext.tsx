@@ -15,7 +15,7 @@ import {
 } from "~/utils/firebase.utils";
 import { type User } from "firebase/auth";
 import { type Recipe } from "./types";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
 interface AuthContextType {
@@ -25,6 +25,7 @@ interface AuthContextType {
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   getRecipeById: (id: string) => Recipe | undefined;
+  deleteRecipeById: (recipeId: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -41,13 +42,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       setUser(user);
       setLoading(false);
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      getRecipes(user);
+      getRecipes();
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
-  const getRecipes = async (user: User | null) => {
+  const getRecipes = async () => {
     if (user) {
       await getDocs(
         collection(firestoreDatabase, `users/${user.uid}/recipes`),
@@ -67,6 +68,27 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         }));
         setRecipes(newData);
       });
+    }
+  };
+
+  const deleteRecipeById = async (recipeId: string): Promise<void> => {
+    if (user) {
+      const recipeRef = doc(
+        firestoreDatabase,
+        `users/${user.uid}/recipes`,
+        recipeId,
+      );
+      try {
+        await deleteDoc(recipeRef);
+        console.log(`Recipe with ID ${recipeId} deleted successfully.`);
+
+        // Optionally, remove the deleted recipe from the local state
+        setRecipes((prevRecipes) =>
+          prevRecipes.filter((recipe) => recipe.id !== recipeId),
+        );
+      } catch (error) {
+        console.error("Error deleting recipe:", error);
+      }
     }
   };
 
@@ -96,6 +118,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         signInWithGoogle,
         signOut,
         getRecipeById,
+        deleteRecipeById,
       }}
     >
       {children}
