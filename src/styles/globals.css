@@ -540,7 +540,7 @@ body {
 .recipe-grid-layout {
   display: grid;
   gap: 0.5em;
-  grid-template-rows: 5% 30% 65%;
+  grid-template-rows: 1fr 30% 65%;
   grid-template-columns: 25vw auto;
   grid-template-areas:
     "ingredients heading"
@@ -550,9 +550,17 @@ body {
   width: 100%;
 }
 
+.recipe-heading {
+  grid-area: heading;
+  display: flex;
+  justify-content: start;
+  margin-left: 1em;
+  font-size: 1.6em;
+  font-weight: 400;
+}
 @media screen and (max-width: 720px) {
   .recipe-grid-layout {
-    grid-template-rows: 5% 10% auto auto;
+    grid-template-rows: 1fr 10% auto auto;
     grid-template-columns: 100%;
     grid-template-areas:
       "heading"
@@ -567,16 +575,12 @@ body {
   .recipe-grid-container {
     width: 100vw;
   }
-}
 
-.recipe-heading {
-  grid-area: heading;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin-left: 1em;
-  font-size: 1.6em;
-  font-weight: 400;
+  .recipe-heading {
+    align-items: center;
+    font-size: 1.4em;
+    font-weight: 400;
+  }
 }
 
 .layoutTest footer {
