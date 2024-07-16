@@ -80,13 +80,6 @@
   .recipe-preview-page {
     width: 98vw;
   }
-
-  .recipe-heading {
-    display: flex;
-    align-items: center;
-    font-size: 1.4em;
-    font-weight: 400;
-  }
 }
 
 .preview-buttonrow {

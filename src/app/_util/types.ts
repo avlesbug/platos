@@ -5,6 +5,7 @@ export type Recipe = {
   ingredients: string[];
   instructions: string[];
   image: string;
+  url: string;
 };
 
 export type BaseRecipe = {
@@ -12,6 +13,7 @@ export type BaseRecipe = {
   portions: number;
   ingredients: string[];
   instructions: string[];
+  url: string;
 };
 
 export type RecipeDto = {

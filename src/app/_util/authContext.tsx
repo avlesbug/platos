@@ -16,7 +16,6 @@ import {
 import { type User } from "firebase/auth";
 import { type Recipe } from "./types";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
 
 interface AuthContextType {
   user: User | null;
@@ -65,6 +64,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
           ingredients: doc.data().ingredients as string[],
           instructions: doc.data().instructions as string[],
           image: doc.data().image as string,
+          url: doc.data().url as string,
         }));
         setRecipes(newData);
       });

@@ -2,15 +2,15 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 
 interface Props {
-  recipeInput: string;
+  recipeUrlInput: string;
   onGetRecipeClick: () => void;
-  onChange: (value: string) => void;
+  onUrlChange: (value: string) => void;
 }
 
 export const NewRecipeDialogComponent = ({
-  recipeInput,
+  recipeUrlInput,
   onGetRecipeClick,
-  onChange,
+  onUrlChange,
 }: Props) => {
   return (
     <div className="new-recipe-dialog">
@@ -24,8 +24,8 @@ export const NewRecipeDialogComponent = ({
       <Input
         type="link"
         placeholder="Lim inn lenken her..."
-        value={recipeInput}
-        onChange={(event) => onChange(event.target.value)}
+        value={recipeUrlInput}
+        onChange={(event) => onUrlChange(event.target.value)}
       />
       <Button onClick={onGetRecipeClick}>Hent oppskrift</Button>
     </div>
