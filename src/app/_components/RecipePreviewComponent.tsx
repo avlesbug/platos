@@ -38,7 +38,10 @@ export const RecipePreviewComponent = ({
         <div className="recipe-preview-grid-layout">
           <div className="recipe-heading">{recipe.name}</div>
           <div className="ingredients">
-            <IngredientsComponent ingredients={recipe.ingredients} />
+            <IngredientsComponent
+              ingredients={recipe.ingredients}
+              portions={recipe.portions}
+            />
           </div>
           <div className="image">
             {recipe.image !== "NoImage" && (

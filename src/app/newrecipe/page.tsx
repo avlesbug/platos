@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { type RecipeDto } from "../_util/types";
+import { BaseRecipe, type RecipeDto } from "../_util/types";
 import { useAuth } from "../_util/authContext";
 import {
   fetchImage,
@@ -17,14 +17,14 @@ import { RecipePreviewComponent } from "../_components/RecipePreviewComponent";
 export default function NewRecipePage() {
   const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const [recipeInput, setRecipeInput] = useState("");
+  const [recipeUrlInput, setRecipeUrlInput] = useState("");
   const [recipe, setRecipe] = useState<RecipeDto>();
   const [imageUpload, setImageUpload] = useState<Blob | null>(null);
 
   const handleGetRecipe = async () => {
     setIsLoading(true);
     try {
-      const recipe = await getRecipeFromUrl(recipeInput);
+      const recipe = await getRecipeFromUrl(recipeUrlInput);
       setRecipe(recipe);
       setIsLoading(false);
     } catch (error) {
@@ -44,15 +44,25 @@ export default function NewRecipePage() {
       } else {
         imageUrl = await fetchImage(user?.uid, recipe?.image);
       }
-      await submitRecipe(user, recipe!, await imageUrl);
+      const recipeWithUrl = addUrlToRecipe();
+      await submitRecipe(user, recipeWithUrl, await imageUrl);
       console.log("Recipe successfully added");
-      setRecipeInput("");
+      setRecipeUrlInput("");
       setRecipe(undefined);
     } catch (error) {
       console.error("Error submitting recipe:", error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const addUrlToRecipe = () => {
+    const newRecipe = {
+      ...recipe,
+      url: recipeUrlInput,
+    } as BaseRecipe;
+
+    return newRecipe;
   };
 
   const handleChange = (file: File) => {
@@ -63,8 +73,8 @@ export default function NewRecipePage() {
     <>
       {!isLoading && !recipe && (
         <NewRecipeDialogComponent
-          recipeInput={recipeInput}
-          onChange={setRecipeInput}
+          recipeUrlInput={recipeUrlInput}
+          onUrlChange={setRecipeUrlInput}
           onGetRecipeClick={handleGetRecipe}
         />
       )}

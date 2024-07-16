@@ -7,9 +7,10 @@ import useWindowDimensions from "../_util/dimensionUtils";
 
 interface Props {
   ingredients: string[];
+  portions: number;
 }
 
-export const IngredientsComponent = ({ ingredients }: Props) => {
+export const IngredientsComponent = ({ ingredients, portions }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
   const { width } = useWindowDimensions();
 
@@ -38,6 +39,7 @@ export const IngredientsComponent = ({ ingredients }: Props) => {
               </Button>
             )}
           </div>
+          <h4 className="ml-0 text-lg">{`${portions} porsjoner`}</h4>
           <ul className="ingredients-list">
             {ingredients?.map((ingredient, index) => (
               <li key={index}>{ingredient}</li>
