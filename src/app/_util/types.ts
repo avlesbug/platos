@@ -6,6 +6,7 @@ export type Recipe = {
   instructions: string[];
   image: string;
   url: string;
+  dateAdded: Date;
 };
 
 export type BaseRecipe = {
