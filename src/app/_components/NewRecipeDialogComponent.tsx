@@ -26,6 +26,7 @@ export const NewRecipeDialogComponent = ({
         placeholder="Lim inn lenken her..."
         value={recipeUrlInput}
         onChange={(event) => onUrlChange(event.target.value)}
+        autoFocus={true}
       />
       <Button onClick={onGetRecipeClick}>Hent oppskrift</Button>
     </div>
