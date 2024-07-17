@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage, firestoreDatabase } from "~/utils/firebase.utils";
 import { type RecipeDto, type BaseRecipe } from "../_util/types";
@@ -86,5 +86,6 @@ export const submitRecipe = async (
   await addDoc(collection(firestoreDatabase, "users", user.uid, "recipes"), {
     ...recipeJson,
     image: imageUrl,
+    dateAdded: serverTimestamp(),
   });
 };

@@ -15,7 +15,14 @@ import {
 } from "~/utils/firebase.utils";
 import { type User } from "firebase/auth";
 import { type Recipe } from "./types";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  Timestamp,
+} from "firebase/firestore";
+import { time, timeStamp } from "console";
 
 interface AuthContextType {
   user: User | null;
@@ -36,6 +43,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const [loading, setLoading] = useState(true);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
+  const fallbackDate = new Date("2024-01-01");
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
@@ -53,7 +62,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         collection(firestoreDatabase, `users/${user.uid}/recipes`),
         // collection(
         //   firestoreDatabase,
-        //   `users/QwTyPnf38OhVrRBgOmUfTeCxOWz1/recipes`,
+        //   `users/Rpi57Fia2kdU26EfXJgDpIJoCVF2/recipes`,
         // ),
       ).then((querySnapshot) => {
         console.log("Reading data");
@@ -65,7 +74,18 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
           instructions: doc.data().instructions as string[],
           image: doc.data().image as string,
           url: doc.data().url as string,
+          dateAdded:
+            (doc.data().dateAdded as Timestamp)?.toDate() ?? fallbackDate,
         }));
+        newData.sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          } else if (a.name < b.name) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
         setRecipes(newData);
       });
     }
