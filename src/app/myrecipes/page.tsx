@@ -15,7 +15,7 @@ import {
   ArrowUp01,
   Search,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,7 +31,7 @@ type SortType = "name" | "dateAdded";
 
 export default function MyRecipesPage() {
   const [editState, setEditState] = useState(false);
-  const [sortField, setSortField] = useState("name");
+  const [searchField, setSearchField] = useState("");
   const { recipes, loading } = useAuth();
   const [sortedRecipes, setSortedRecipes] = useState(recipes);
   const [selectedSortOption, setSelectedSortOption] = useState(0);
@@ -51,9 +51,26 @@ export default function MyRecipesPage() {
       }
       return sortAscend ? comparison : -comparison;
     });
-    // setSortField(newSortField);
     setSortedRecipes(resortedRecipes);
   };
+
+  const debouncedSearch = useMemo(() => {
+    let timeoutId: NodeJS.Timeout;
+    return (searchTerm: string) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const searchedRecipes = recipes.filter((recipe) =>
+          recipe.name.toLowerCase().includes(searchTerm.toLowerCase()),
+        );
+        setSortedRecipes(searchedRecipes);
+      }, 300);
+    };
+  }, [recipes]);
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    debouncedSearch(searchField);
+  }, [searchField, debouncedSearch]);
 
   return (
     <div className="recipe-grid-container">
@@ -136,6 +153,22 @@ export default function MyRecipesPage() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <Search
+            onClick={() => {
+              setShowSearchField((prevState) => {
+                return !prevState;
+              });
+            }}
+          />
+          {showSearchField && (
+            <Input
+              className="h-7"
+              placeholder="Søk etter oppskrift.."
+              autoFocus={true}
+              value={searchField}
+              onChange={(event) => setSearchField(event.target.value)}
+            />
+          )}
         </div>
         {editState && (
           <PencilLine
