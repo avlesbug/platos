@@ -203,12 +203,6 @@ body {
   color: white;
 }
 
-.page-container {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-}
-
 .body-container {
   width: 100vw;
   height: calc(100vh - 3.5em);
@@ -498,7 +492,7 @@ body {
   margin: 1.4em;
 }
 
-.container-header {
+.container-header-title {
   display: flex;
   justify-content: space-between; /* Align items with space between them */
   align-items: center; /* Vertically center items */

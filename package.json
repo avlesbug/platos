@@ -22,6 +22,7 @@
     "lucide-react": "^0.390.0",
     "next": "^14.2.1",
     "openai": "^4.51.0",
+    "parse-ingredient": "^1.2.1",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-drag-drop-files": "^2.3.10",
