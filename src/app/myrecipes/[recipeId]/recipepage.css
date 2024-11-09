@@ -1,0 +1,247 @@
+.recipe-grid-layout {
+    display: grid;
+    gap: 0.5em;
+    grid-template-rows: 100%;
+    grid-template-columns: 25vw auto;
+    grid-template-areas:
+    "ingredients main-conent";
+    height: 100%;
+    width: 100%;
+}
+
+.main-container {
+    height: 100%;
+    grid-area: main-conent;
+    overflow-y: scroll;
+    display: grid;
+    gap: 0.5em;
+    border-radius: 1em;
+    grid-template-rows: 1fr 20% 10fr;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "title"
+      "image"
+      "instructions";
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(250, 250, 250, 0.7);
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 100%;
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 720px) {
+    .recipe-grid-layout {
+        display: grid;
+        gap: 0.5em;
+        grid-template-rows: 1fr 10% auto auto;
+        grid-template-columns: 100%;
+        grid-template-areas:
+      "title"
+      "image"
+      "ingredients"
+      "instructions";
+    }
+
+    .content-container {
+        overflow-y: scroll;
+        border-radius: 0;
+    }
+
+    .recipe-grid-container {
+        width: 100vw;
+    }
+
+    .recipe-heading {
+        align-items: center;
+        font-size: 1.4em;
+        font-weight: 400;
+    }
+
+    .main-container {
+        display: contents;
+    }
+
+    .image {
+        height: 100%;
+    }
+}
+
+.recipe-heading {
+    grid-area: title;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 1.6em;
+    font-weight: 400;
+}
+
+.recipe-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(260px, 1fr));
+    justify-content: center;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 1.4em;
+    gap: 2em;
+    height: 100%;
+}
+
+.ingredients {
+    grid-area: ingredients;
+    height: 100%;
+}
+
+.instructions {
+    grid-area: instructions;
+    height: 100%;
+}
+
+.instructions-container {
+    height: 100%;
+    text-align: start;
+    padding: 1rem;
+    background-color: #e9edc9;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+}
+
+.image {
+    grid-area: image;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 1em;
+}
+
+.ingredients-list {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0.5em 0 0 0; /* Remove default padding */
+}
+
+.ingredients-list li {
+    margin-bottom: 8px; /* Add spacing between each ingredient */
+    font-size: 16px; /* Set font size for ingredients */
+    line-height: 1.5; /* Set line height for better readability */
+    font-size: 1.2rem;
+}
+
+/* Optionally, you can style each ingredient differently */
+.ingredients-list li:before {
+    content: "•"; /* Add custom bullet point */
+    color: #ff5733; /* Change color of bullet point */
+    margin-right: 8px; /* Add space between bullet point and text */
+}
+
+.instructions-list {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0.8em 0 0 0; /* Remove default padding */
+}
+
+.instructions-list li {
+    margin-bottom: 1em; /* Add spacing between each instruction */
+    font-size: 16px; /* Set font size for instructions */
+    line-height: 1.5; /* Set line height for better readability */
+    font-size: 1.2rem;
+    gap: 1em;
+    align-items: center;
+    display: flex;
+}
+
+.checked-instruction {
+    text-decoration: line-through;
+    color: #888; /* Example: Change color for checked items */
+    font-size: 0.2em;
+}
+
+.checked-instruction > li {
+    font-size: 0.2em;
+}
+
+/* Hide default checkbox */
+.instructions-list input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-width: 16px;
+    min-height: 16px;
+    border: 2px solid #ff58335a;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.instructions-list input[type="checkbox"]:checked {
+    background-color: #888; /* Grey color when checked */
+    border-color: #888; /* Grey border color when checked */
+}
+
+@media screen and (max-width: 1080px) {
+    .content-container {
+        height: 100%;
+        width: 100%;
+        padding-left: 0.2em;
+        padding-right: 0.2em;
+        padding-bottom: 1em;
+        padding-top: 1em;
+        border-radius: 0;
+    }
+
+    .recipes-body {
+        min-width: 100vw; /* Adjusted max-width for tablets */
+    }
+
+    .header-buttonrow,
+    .acount-links {
+        margin-right: 2vw; /* Remove right margin */
+    }
+
+    .full-text {
+        display: none;
+    }
+
+    .short-text {
+        display: inline-blocxk;
+    }
+
+    .recipe-body {
+        gap: 0.4em;
+        margin: 0.2em;
+    }
+}
+
+
+input[type="checkbox"] {
+    transform: scale(1.3); /* Increase the scale as needed */
+    margin: 5px; /* Optional: adjust spacing */
+}
+
+.red {
+    background-color: red;
+    height: 100%;
+}
+
+.teal {
+    background-color: teal;
+    height: 100%;
+}
+
+.green {
+    background-color: green;
+    height: 100%;
+}
+
+.yellow {
+    background-color: yellow;
+    height: 100%;
+}
