@@ -31,6 +31,7 @@ export const InstructionsComponent = ({ instructions }: Props) => {
           >
             <input
               type="checkbox"
+              class="large-checkbox"
               checked={checkedItems[index]}
               onChange={() => handleToggle(index)}
             />
