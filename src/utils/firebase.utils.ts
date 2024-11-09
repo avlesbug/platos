@@ -12,7 +12,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBQuqqRiZfUr_pazTL7B9PcRWAiO55S24k",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "recipie-b8629.firebaseapp.com",
   projectId: "recipie-b8629",
   storageBucket: "recipie-b8629.appspot.com",
