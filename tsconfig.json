@@ -27,9 +27,11 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
-    }
+    },
+    "types": ["node"]
   },
   "include": [
+    "src/**/*",
     ".eslintrc.cjs",
     "next-env.d.ts",
     "**/*.ts",
