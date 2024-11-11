@@ -414,3 +414,18 @@ body {
     cursor: pointer; /* Changes the cursor to a pointer when hovering */
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
+
+@media screen and (max-width: 1080px) {
+    .full-text {
+        display: none;
+    }
+
+    .short-text {
+        display: inline-block;
+    }
+}
+@media screen and (max-width: 720px) {
+    .recipe-grid-container {
+        width: 100vw;
+    }
+}
