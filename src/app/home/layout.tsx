@@ -8,9 +8,10 @@ import { redirect } from "next/navigation";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
-  if (user) {
-    redirect("/myrecipes");
-  }
+  // if (user) {
+  //   redirect("/myrecipes");
+  // }
+    redirect("/login");
   return (
     <>
       <ModularHeader showLogginButton={true} />
