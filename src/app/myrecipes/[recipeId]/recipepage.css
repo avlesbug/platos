@@ -55,10 +55,6 @@
         border-radius: 0;
     }
 
-    .recipe-grid-container {
-        width: 100vw;
-    }
-
     .recipe-heading {
         align-items: center;
         font-size: 1.4em;
@@ -204,14 +200,6 @@
     .header-buttonrow,
     .acount-links {
         margin-right: 2vw; /* Remove right margin */
-    }
-
-    .full-text {
-        display: none;
-    }
-
-    .short-text {
-        display: inline-blocxk;
     }
 
     .recipe-body {
