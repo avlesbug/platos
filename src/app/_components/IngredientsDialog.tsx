@@ -9,14 +9,17 @@ import { Button } from "~/components/ui/button";
 
 interface Props {
   ingredients: string[];
+  isOpen: boolean;
+  setIsOpen: () => void;
 }
 
-export const IngredientsDialog = ({ ingredients }: Props) => {
+export const IngredientsDialog = ({
+  ingredients,
+  isOpen,
+  setIsOpen,
+}: Props) => {
   return (
-    <Dialog>
-      <DialogTrigger>
-        <Button>Vis ingredienser</Button>
-      </DialogTrigger>
+    <Dialog open={isOpen}>
       <DialogContent>
         <DialogTitle>Ingredienser</DialogTitle>
         <ul className="ingredients-list">
@@ -25,11 +28,9 @@ export const IngredientsDialog = ({ ingredients }: Props) => {
           })}
         </ul>
         <DialogFooter className="sm:justify-end">
-          <DialogClose asChild>
-            <Button type="button" variant="secondary">
-              Lukk
-            </Button>
-          </DialogClose>
+          <Button onClick={setIsOpen} type="button" variant="secondary">
+            Lukk
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
