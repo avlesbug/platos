@@ -1,6 +1,10 @@
-import { useState } from "react";
-import { Dialog } from "@radix-ui/react-dialog";
-import { DialogContent, DialogTrigger } from "~/components/ui/dialog";
+import { Dialog, DialogTitle } from "@radix-ui/react-dialog";
+import {
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogTrigger,
+} from "~/components/ui/dialog";
 import { Button } from "~/components/ui/button";
 
 interface Props {
@@ -14,11 +18,19 @@ export const IngredientsDialog = ({ ingredients }: Props) => {
         <Button>Vis ingredienser</Button>
       </DialogTrigger>
       <DialogContent>
+        <DialogTitle>Ingredienser</DialogTitle>
         <ul className="ingredients-list">
           {ingredients?.map((ingredient, index) => {
             return <li key={index}>{ingredient}</li>;
           })}
         </ul>
+        <DialogFooter className="sm:justify-end">
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Lukk
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
