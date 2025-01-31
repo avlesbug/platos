@@ -8,8 +8,9 @@ import "./recipepage.css";
 import { InstructionsComponent } from "~/app/_components/InstructionsComponent";
 import Link from "next/link";
 import { LinkIcon } from "lucide-react";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IngredientsDialog } from "~/app/_components/IngredientsDialog";
+import { Button } from "~/components/ui/button";
 
 interface RecipePageProps {
   params: {
@@ -19,6 +20,7 @@ interface RecipePageProps {
 
 export default function RecipePage({ params }: RecipePageProps) {
   const [isOnScreen, setIsOnScreen] = useState<boolean>(false);
+  const [isOpenDialog, setIsOpenDialog] = useState<boolean>(false);
   const ingredientsRef = useRef<HTMLDivElement | null>(null);
   const { getRecipeById } = useAuth();
   const recipe = getRecipeById(params.recipeId);
@@ -80,11 +82,20 @@ export default function RecipePage({ params }: RecipePageProps) {
               <InstructionsComponent instructions={recipe.instructions} />
             </div>
           </div>
-          {!isOnScreen && (
+          {!isOnScreen && !isOpenDialog && (
             <div className="fixed-position-button">
-              <IngredientsDialog ingredients={recipe.ingredients} />
+              <Button
+                onClick={() => setIsOpenDialog((prevState) => !prevState)}
+              >
+                Vis ingredienser
+              </Button>
             </div>
           )}
+          <IngredientsDialog
+            ingredients={recipe.ingredients}
+            isOpen={isOpenDialog}
+            setIsOpen={() => setIsOpenDialog((prevState) => !prevState)}
+          />
         </div>
       ) : (
         <ColorRing />

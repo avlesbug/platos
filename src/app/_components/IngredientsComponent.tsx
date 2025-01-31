@@ -6,7 +6,6 @@ import { Button } from "~/components/ui/button";
 import useWindowDimensions from "../_util/dimensionUtils";
 import { parseIngredient } from "parse-ingredient";
 import { IngredientPortionsComponent } from "./IngredientPortionsComponent";
-import { IngredientsDialog } from "./IngredientsDialog";
 
 interface Props {
   ingredients: string[];
@@ -17,9 +16,7 @@ export const IngredientsComponent = ({ ingredients, portions }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
   const { width } = useWindowDimensions();
   const [variablePortions, setVariablePortions] = useState(portions);
-  const [isOnScreen, setIsOnScreen] = useState<boolean>(false);
   const basePortions = portions;
-  const ingredientsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (width > 720) {
@@ -91,7 +88,7 @@ export const IngredientsComponent = ({ ingredients, portions }: Props) => {
   return (
     <>
       {isVisible ? (
-        <div className="ingredients-container" ref={ingredientsRef}>
+        <div className="ingredients-container">
           <div className="flex flex-col gap-4">
             <div className="container-header-title">
               <b>Ingredienser</b>
