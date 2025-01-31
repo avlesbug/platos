@@ -22,11 +22,18 @@ export const IngredientsDialog = ({
     <Dialog open={isOpen}>
       <DialogContent>
         <DialogTitle>Ingredienser</DialogTitle>
-        <ul className="ingredients-list">
-          {ingredients?.map((ingredient, index) => {
-            return <li key={index}>{ingredient}</li>;
-          })}
-        </ul>
+        <div
+          style={{
+            height: `${window.innerHeight - 200}px`,
+            overflowY: "auto",
+          }}
+        >
+          <ul className="ingredients-list">
+            {ingredients?.map((ingredient, index) => {
+              return <li key={index}>{ingredient}</li>;
+            })}
+          </ul>
+        </div>
         <DialogFooter className="sm:justify-end">
           <Button onClick={setIsOpen} type="button" variant="secondary">
             Lukk
