@@ -1,7 +1,7 @@
 import "src/app/newrecipe/newrecipe.css";
 import "~/styles/globals.css";
 
-import { ChangeEvent } from "react";
+import { ChangeEvent, use, useEffect, useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -23,6 +23,7 @@ export const RecipePreviewComponent = ({
   handleImageUpload,
 }: Props) => {
   const fileTypes = ["JPG", "PNG", "JPEG"];
+  const [isOnScreen, setIsOnScreen] = useState<boolean>(false);
   // console.log(recipe);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +32,6 @@ export const RecipePreviewComponent = ({
       handleImageUpload(file);
     }
   };
-
   return (
     <>
       <div className="recipe-preview-container">
